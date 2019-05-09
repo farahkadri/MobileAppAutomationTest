@@ -29,8 +29,14 @@ public class Search {
     @Test
     public void search() {
 
-        onView(withId(R.id.tv_search)).perform(typeText(     "valid"));
-        onView(withId(R.id.btn_search)).perform(click());
+        onView(allOf(withId(R.id.textSearch), isDisplayed()))
+                .perform(typeText("sa"),closeSoftKeyboard());
+        onView(withText("Sarah Scott"))
+                .inRoot(withDecorView(not(is(mActivity.getWindow().getDecorView()))))
+                .perform(click());
+        onView(withId(R.id.fab))
+                .perform(click());
+
 
     }
 }

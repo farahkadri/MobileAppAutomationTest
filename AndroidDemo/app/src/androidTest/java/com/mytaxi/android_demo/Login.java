@@ -24,9 +24,21 @@ public class Login {
     @Test
     public void login() {
 
-        onView(withId(R.id.tv_loginid)).perform(typeText("valid"), closeSoftKeyboard()); // Type Login id
-        onView(withId(R.id.tv_password)).perform(typeText("valid"), closeSoftKeyboard()); // Type Password
-        onView(withId(R.id.btn_login)).perform(click());
+        onView(withId(R.id.edt_username))
+                .perform(typeText("crazydog335"), closeSoftKeyboard());
+        onView(withId(R.id.edt_password))
+                .perform(typeText("venture"), closeSoftKeyboard());
+        onView(withId(R.id.btn_login))
+                .perform(click());
+
+        Thread.sleep(2000);
+        onView(allOf(withId(R.id.textSearch), isDisplayed()))
+                .perform(typeText("sa"),closeSoftKeyboard());
+        onView(withText("Sarah Scott"))
+                .inRoot(withDecorView(not(is(mActivity.getWindow().getDecorView()))))
+                .perform(click());
+        onView(withId(R.id.fab))
+                .perform(click());
 
     }
 }
